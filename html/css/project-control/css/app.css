@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.button {
+    
+    text-decoration: none;
+    border: 1px solid #c6c6c6;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    
+}
+
+.button:hover {
+    font-weight: bold;
+}
+
+.button-master {
+    background-color: blue;
+    border: 1px solid blue;
+}
+
+.button-danger {
+    background-color: red;
+    border: 1px solid red;
+}
+
+table, th, td {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    padding: 0.3rem;
+}
+
+table {
+    width: 100%;
+}
+
+tbody > tr:nth-child(odd) {
+    background-color: #c6c6c6;
+}
+
+thead > tr {
+    background-color: #89a8b2;
+}
+
+tfoot > tr {
+    background-color: aliceblue;
+}
+
+tbody > tr:hover {
+    background-color: darkgray;
+}
+
+tbody > tr > td:nth-child(2):hover {
+    background-color: aqua;
+}
+
+/* Definição de estilo por ID, utiliza #*/
+#start {
+    /*border: 1px solid #000;*/
+    display: flex;
+    justify-content: space-between; /*Separa o itens*/
+    align-items: center; /*Alinha no centro do div*/
+
+    /* flex-direction: row-reverse;Inverte a posição dos itens */
+
+    padding: 20px;
+    margin:10px
+
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+}
+
+.form-input > label { /*Customizando os labels da classe form-input*/
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+.form-input > input {/*Customizando os inputs da classe form-input*/
+    font-size: 1.5rem;
+    border-radius: 5px;
+}
+
+.form-input > input:focus{ /*Quando o campo está selecionado*/
+    border:0px;
+    outline: 1px solid #00f;
+    background-color: var(--sombra);
+}
+
+:root { /*Instânciar variavel root é escopo global, -- é a sintaxe para variavel*/
+    --sombra: #c4c4c4;
+}

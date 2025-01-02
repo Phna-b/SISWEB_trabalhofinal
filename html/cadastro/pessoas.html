@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-Br" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Cadastro de pessoas</h1>
+<!-- Forms - Metodo (get e post), Action(endereço de envio) -->
+    <form method="get" action="/pessoas/cadastrar">
+        
+        <div>
+
+            <!-- Definição do tipo de entrada  (Submit usado para envio dos dados)-->
+            <div>
+                <label for="nomeDaPessoa">Nome</label>
+                <input id ="nomeDaPessoa" type="text" name="nomeDaPessoa" required="True" minlength="5" placeholder="Nome completo da pessoa">
+            </div>
+            <br>
+            <div>
+                <!-- Forms Label para separar os campos de entradas-->
+                <label for="senha">Senha</label>
+                <input type="password" name ="senha" id="senha" required="True">
+            </div>
+            <br>
+            <div>
+                <label for="pais">Pais</label>
+                <input type="text" name ="pais" id="pais" required="True" value="Brasil">
+            </div>
+            <br>
+
+            <!--input:radio cria de uma vez // Deixar o name do input igual para marcação exclusiva 
+            // Necessário atribuir valor ao input para ser enviado no post-->
+            <div>
+                <input type="radio" name ="genero" id="feminino" required="True" value="fem">
+                <label for="feminino">Feminino</label>
+            </div>
+            <div><!--ctrl + D selecionando 1 e aperta de novo, seleciona o proximo-->
+                <input type="radio" name ="genero" id="masculino" required="True" value="masc">
+                <label for="masculino">Masculino</label>
+            </div>
+            <div>
+                <input type="radio" name ="genero" id="naobinario" required="True" value="nb">
+                <label for="naobinario">Não binário</label>
+            </div>
+            <div>
+                <input type="radio" name ="genero" id="semresposta" required="True" value="sr">
+                <label for="semresposta">Prefiro não responder</label>
+            </div>
+            <br>
+            
+            <div>
+                <label>Notificações</label>
+                <br>
+
+                <div>
+                    <input type="checkbox" name="notificacao[0]" id="email">
+                    <label for="email">E-mail</label>
+                </div>
+
+                <br>
+                <div>
+                    <input type="checkbox" name="notificacao[1]" id="whatsapp">
+                    <label for="whatsapp">Whatsapp</label>
+                </div>
+
+                <br>
+                <div>
+                    <input type="checkbox" name="notificacao[2]" id="telegram">
+                    <label for="telegram">Telegram</label>
+                </div>
+
+                <br>
+                <div>
+                    <input type="checkbox" name="notificacao[3]" id="sms">
+                    <label for="sms">SMS</label>
+                </div>
+
+            </div>
+
+            <br> 
+            <div>
+
+                <label for="">UF</label>
+                <select name="UF" id="UF" >
+                    
+                    <option value="0" selected disabled>Selecione:</option>
+                    <option value="1">Minas Gerais</option>
+                    <option value="2">São Paulo</option>
+                    <option value="3">Pará</option>
+                    <option value="4">Bahia</option>
+                    <option value="5">Rio de Janeiro</option>
+
+                </select>
+
+            </div>
+
+            
+            <br> 
+            <div>
+                <label for="cor">Cor padrão do perfil</label>
+                <input type="color" name="cor" id="cor">
+            </div>
+
+            <br> 
+            <div>
+                <label for="data">Data de nascimento</label>
+                <input type="date" name="data" id="data">
+            </div>
+            
+            <br>
+            <div>
+                <input value="Cadastrar" type="submit"> 
+                <input type="reset" value="Limpar">
+                <!-- Possui a mesma funcionalidade
+                <button type="submit"> Cadastrar </button> 
+                <button type="reset">Limpar o form</button> -->
+            </div>
+            
+            <a href="../">Voltar para página inicial</a>
+        </div>
+
+    </form>
+
+</body>
+</html>
