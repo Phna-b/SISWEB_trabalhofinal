@@ -81,7 +81,9 @@ def atualizar(id):
             return redirect(url_for("lista"))
     return render_template("atualizar.html",pessoa=pessoa)
 
-
+@app.route("/")
+def base():
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
