@@ -1,0 +1,6 @@
+py -m ensurepip --upgrade
+
+py -m pip install --upgrade pip
+
+Editar variáveis de ambiente do sistema -> Variáveis de ambiente -> Editar -> Path -> Adiciona: 
+C:\Users\Pedro\AppData\Local\Programs\Python\Python311\Scripts 
