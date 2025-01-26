@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect
 
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 app.app_context().push()
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
@@ -83,7 +83,8 @@ def atualizar(id):
 
 @app.route("/")
 def base():
-    return render_template("index.html")
+    return render_template("login.html")
+
 
 
 if __name__ == "__main__":
