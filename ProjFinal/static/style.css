@@ -90,21 +90,18 @@ body{
 
 .form-container{
     position: absolute;
-    top: 0;
     height: 100%;
     transition: all 0.6s ease-in-out;
 }
 
 .sign-in{
-    left: 0;
-    width: 50%;
-    z-index: 2;
+    width: 100%;
+    z-index: 1;
 }
 
- 
+
 .sign-up{
-    right: 0;
-    width: 50%;
+    width: 100%;
     z-index: 1;
 }
 
@@ -115,4 +112,3 @@ body{
     animation: move 0.6s;
 }
 
- 

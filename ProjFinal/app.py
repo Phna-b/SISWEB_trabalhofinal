@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect
 
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__, static_url_path='/static')
 app.app_context().push()
@@ -16,7 +17,7 @@ class Pessoa(db.Model):
     nome = db.Column(db.String)
     telefone = db.Column(db.String)
     cpf = db.Column(db.String)
-    email = db.Column(db.String)
+    email = db.Column(db.String,unique=True)
 
     def __init__(self, nome, telefone, cpf, email):
         self.nome = nome
@@ -84,8 +85,6 @@ def atualizar(id):
 @app.route("/")
 def base():
     return render_template("login.html")
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
