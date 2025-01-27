@@ -112,3 +112,10 @@ body{
     animation: move 0.6s;
 }
 
+
+.is-danger{
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+    color: red;
+}

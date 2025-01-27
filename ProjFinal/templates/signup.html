@@ -11,6 +11,13 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="is-danger">
+                {{ messages[0] }}. Va para a página de <a style="color: red;text-decoration: underline;" href="{{ url_for('login') }}">login</a>.
+            </div>
+        {% endif %}
+        {% endwith %}
             <form action="{{ url_for('signup') }}" method="POST">
                 <h1>Criar nova conta    </h1>
                 <span>Utilize seu e-mail para o cadastro!</span>
