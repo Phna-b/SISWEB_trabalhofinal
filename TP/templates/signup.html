@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet"  href="{{ url_for('static', filename='style.css')}}">
- 
-    <title>Login</title >
+    <title>Cadastro de usuário</title >
 </head>
 <body>
 
     <div class="container" id="container">
-        <div class="form-container sign-in">
+        <div class="form-container sign-up">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-            <div class="notification is-danger">
-                {{ messages[0] }}
+            <div class="is-danger">
+                {{ messages[0] }}. Va para a página de <a style="color: red;text-decoration: underline;" href="{{ url_for('login') }}">login</a>.
             </div>
         {% endif %}
         {% endwith %}
-            <form action="{{ url_for('login') }}" method="POST">
-                <h1>Login</h1>
-                <span>Use seu e-mail e senha</span>
+            <form action="{{ url_for('signup') }}" method="POST">
+                <h1>Criar nova conta    </h1>
+                <span>Utilize seu e-mail para o cadastro!</span>
+                <input type="text" placeholder="Nome" name="nome">  
                 <input type="email" placeholder="E-mail" name="email">
                 <input type="password" placeholder="Senha" name="password">
-                <a href="#">Esqueceu a senha?</a>
-                <button>Entrar</button>
+                <a href="/login">Já possuo cadastro</a>
+                <button>Criar nova conta</button>
             </form>
         </div>
     </div>

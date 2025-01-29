@@ -47,6 +47,7 @@ db.create_all()
 
 @app.route("/index")
 def index():
+
     return render_template("index.html")
 
 @app.route("/cadastrar")
@@ -105,7 +106,7 @@ def atualizar(id):
 def login():
     return render_template('login.html')
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET','POST'])
 def login_post():
 
     email = request.form.get('email')
@@ -125,7 +126,7 @@ def login_post():
 def signup():
     return render_template('signup.html')
 
-@app.route('/signup', methods=['POST'])
+@app.route('/signup', methods=['GET','POST'])
 def signup_post():
     email = request.form.get('email')
     nome = request.form.get('nome')
@@ -155,7 +156,7 @@ def signup_post():
 
 @app.route("/")
 def base():
-    return render_template("signup.html")
+    return render_template("login.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
