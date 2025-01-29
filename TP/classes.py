@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_login import login_required, current_user,LoginManager,UserMixin
 
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship,mapped_column
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__, static_url_path='/static')
@@ -30,14 +32,16 @@ class Pessoa(db.Model):
     telefone = db.Column(db.String)
     cpf = db.Column(db.String)
     email = db.Column(db.String,unique=True)
+    conta_id = mapped_column(ForeignKey("conta.id"))
 
+    conta = relationship("Conta", back_populates="pessoa")
 
-    def __init__(self, nome, telefone, cpf, email,password):
+    def __init__(self, nome, telefone, cpf, email):
         self.nome = nome
         self.telefone = telefone
         self.cpf = cpf
         self.email = email
-
+        self.conta_id = current_user.id
 
 class Conta(db.Model, UserMixin):
 
@@ -47,6 +51,7 @@ class Conta(db.Model, UserMixin):
     nome = db.Column(db.String)
     email = db.Column(db.String,unique=True)
     password = db.Column(db.String(100))
+    pessoa = relationship("Pessoa", back_populates="conta")
 
     def __init__(self, nome, email,password):
         self.nome = nome
