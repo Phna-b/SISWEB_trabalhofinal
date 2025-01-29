@@ -34,7 +34,8 @@ def cadastro():
 @app.route("/lista")
 @login_required
 def lista():
-    pessoas = Pessoa.query.all()
+    pessoas = Pessoa.query.filter_by(conta_id=current_user.id)
+    #pessoas = Pessoa.query.all()
     return render_template("lista.html", pessoas = pessoas)
 
 @app.route("/excluir/<int:id>")
