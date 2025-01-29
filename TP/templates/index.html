@@ -10,5 +10,8 @@
     <hr>
     <a href="{{url_for('cadastrar')}}">Cadastrar Clientes</a>
     <a href="{{url_for('lista')}}">Lista de Clientes</a>
+    <form action="{{ url_for('logout') }}" method="get">
+        <button type="submit">Sair</button>
+    </form>
 </body>
 </html>

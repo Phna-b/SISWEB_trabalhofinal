@@ -1,18 +1,23 @@
 from flask import Flask, render_template, request, url_for, redirect, flash
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, login_user, logout_user
 
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from classes import *
 
+
+
 @app.route("/index")
+@login_required
 def index():
     return render_template("index.html")
 
 @app.route("/cadastrar")
+@login_required
 def cadastrar():
     return render_template("cadastro.html")
 @app.route("/cadastro", methods=['GET','POST'])
+@login_required
 def cadastro():
     if(request.method == "POST"):
         nome = request.form.get("nome")
@@ -27,11 +32,13 @@ def cadastro():
     return redirect(url_for("index"))
 
 @app.route("/lista")
+@login_required
 def lista():
     pessoas = Pessoa.query.all()
     return render_template("lista.html", pessoas = pessoas)
 
 @app.route("/excluir/<int:id>")
+@login_required
 def excluir(id):
     pessoa = Pessoa.query.filter_by(_id=id).first()
 
@@ -42,6 +49,7 @@ def excluir(id):
     return render_template("lista.html", pessoas = pessoas)
 
 @app.route("/atualizar/<int:id>", methods=['GET','POST'])
+@login_required
 def atualizar(id):
     pessoa = Pessoa.query.filter_by(_id=id).first()
 
@@ -78,6 +86,7 @@ def login_post():
         flash('Verifique seus dados e tente novamente!')
         return redirect(url_for('login'))
 
+    login_user(user)  # Faz login do usuário  --- E mantém os daods salvos
     return redirect(url_for('index'))
 
 
@@ -104,6 +113,11 @@ def signup_post():
         db.session.commit()
         return redirect(url_for('login'))
 
+@app.route("/logout")
+def logout():
+    logout_user()  # Faz logout do usuário
+    flash('Você saiu da conta!', 'success')
+    return redirect(url_for('login'))  # Redireciona para a página de login
 
 @app.route("/")
 def base():
