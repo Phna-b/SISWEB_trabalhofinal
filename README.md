@@ -5,13 +5,14 @@
 <!-- Descrever um resumo sobre o trabalho. -->
 
 ### Resumo
-
-  (Apresentar um breve resumo sobre o seu trabalho, indicando o contexto e as principais funcionalidades.)
-
+  O trabalho prático desenvolvido para a disciplina CSI606 tem como foco manter um local anotação e consulta de como executar exercícios na academia. Possui um sistema de login para possíbilitar o uso de múltiplos
+  usuário e página de consulta, anotação e controle dos exercícios.
 <!-- Apresentar o tema. -->
 ### 1. Tema
 
-  O trabalho final tem como tema o desenvolvimento de ...
+  O trabalho final tem como tema o desenvolvimento de hábitos de exercícios e incetivo à pratica dos mesmos. Com uma interface amigável é possível selecionar fichas de exercícios preenchimento das repetições e 
+  pesos utilizados durante o treinamemento. Com o auxilio de acompanhamento profissional seria possível a utilização das informações do aplicativo para desenvolvimento de novas fichas, assim complementando as   
+  informações de perifl do usuário e possibilitando uma abordagem ainda mais direcionada. 
 
 <!-- Descrever e limitar o escopo da aplicação. -->
 ### 2. Escopo
