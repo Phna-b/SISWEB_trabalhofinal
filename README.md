@@ -39,10 +39,8 @@
     - Listagem dos registros de exercícios de cada conta (lista);
     - Cadastro de novos registros (cadastro);
     - Atualização de registro (atualizar).
-    Todos podem ser encontrado em TP/templates.
+  Todos podem ser encontrado em TP/templates.
 
     
-
-    No momento foram implementadas páginas de login, signup, menu geral(index), listagem dos registros (lista), cadastros de registro (cadastro) e uma página de atualização (atualizar).
 
  
