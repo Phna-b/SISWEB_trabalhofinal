@@ -5,28 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet"  href="{{ url_for('static', filename='style.css')}}">
- 
-    <title>Login</title >
+    <title>Recuperação de senha</title >
 </head>
 <body>
 
     <div class="container" id="container">
-        <div class="form-container sign-in">
+        <div class="form-container sign-up">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-            <div class="notification is-danger">
+            <div class="is-danger">
                 {{ messages[0] }}
             </div>
         {% endif %}
         {% endwith %}
-            <form action="{{ url_for('login') }}" method="POST">
-                <h1>Login</h1>
-                <span>Use seu e-mail e senha</span>
+            <form action="{{ url_for('recovery') }}" method="POST">
+                <h1>Recuperação de senha</h1>
+                <span>Utilize seu e-mail para o cadastro!</span>
                 <input type="email" placeholder="E-mail" name="email">
-                <input type="password" placeholder="Senha" name="password">
-                <a href="{{ url_for('recovery') }}">Esqueci minha senha</a>
-                <a href="{{ url_for('signup') }}">Realizar cadastro</a>
-                <button>Entrar</button>
+                <input type="password" placeholder="Nova senha" name="password">
+                <input type="password" placeholder="Confirmação de nova senha" name="password2">
+                <button>Recuperar minha senha</button>
             </form>
         </div>
     </div>

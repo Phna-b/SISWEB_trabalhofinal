@@ -114,6 +114,29 @@ def signup_post():
         db.session.commit()
         return redirect(url_for('login'))
 
+@app.route('/recovery')
+def recovery():
+    return render_template('recovery.html')
+
+@app.route("/recovery", methods=['GET','POST'])
+def recovery_post():
+    email = request.form.get('email')
+    password = request.form.get('password')
+    password2 = request.form.get('password2')
+    conta = Conta.query.filter_by(email=email).first()
+
+    if not conta: # if a user is found, we want to redirect back to signup page so user can try again
+        flash('O e-mail indicado não possui cadastrado!')
+        return redirect(url_for('login'))
+    if password != password2:
+        flash('As senhas não são iguais! Digite novamente.')
+        return redirect(url_for('recovery'))
+
+
+    conta.password = generate_password_hash(password, method='pbkdf2:sha256')
+    db.session.commit()
+    return redirect(url_for("login"))
+
 @app.route("/logout")
 def logout():
     logout_user()  # Faz logout do usuário
