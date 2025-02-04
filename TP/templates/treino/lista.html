@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='style.css')}}">
+    <title>Treinos</title>
+</head>
+<body>
+    <h1>Lista de Treinos</h1>
+    <hr>
+
+    <table border="4">
+        <tr>
+            <td>Nome</td>
+            <td>Data</td>
+            <td>Excluir</td>
+            <td>Atualizar</td>
+        </tr>
+        {% for treino in treinos%}
+        <tr>
+            <td>{{treino.nome }}</td>
+            <td>{{treino.data }}</td>
+            <td><a href="/excluir/{{treino._id}}">X</a></td>
+            <td><a href="/atualizar/{{treino._id}}">Atualizar</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+    <a href="/index">Voltar</a>
+</body>
+</html>

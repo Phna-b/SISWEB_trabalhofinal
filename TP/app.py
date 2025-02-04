@@ -122,7 +122,11 @@ def novoTreino():
             db.session.commit()
     return redirect(url_for("index"))
 
-
+@app.route("/listaDeTreinos")
+@login_required
+def listaDeTreinos():
+    treinos = Treino.query.filter_by(conta_id=current_user.id)
+    return render_template("treino/lista.html", treinos = treinos)
 
 
 
