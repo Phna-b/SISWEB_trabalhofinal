@@ -130,7 +130,7 @@ def listaDeTreinos():
 
 @app.route("/listarTreino/<int:id>", methods=['GET','POST'])
 @login_required
-def atualizar(id):
+def listarTreino(id):
   return 0
 
 
