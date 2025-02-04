@@ -128,7 +128,10 @@ def listaDeTreinos():
     treinos = Treino.query.filter_by(conta_id=current_user.id)
     return render_template("treino/lista.html", treinos = treinos)
 
-
+@app.route("/listarTreino/<int:id>", methods=['GET','POST'])
+@login_required
+def atualizar(id):
+  return 0
 
 
 

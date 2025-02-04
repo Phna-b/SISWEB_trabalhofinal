@@ -20,7 +20,7 @@
         </tr>
         {% for treino in treinos%}
         <tr>
-            <td>{{treino.nome }}</td>
+            <td><a href="/listarTreino/{{treino._id}}">{{treino.nome}}</a></td>
             <td>{{treino.data }}</td>
             <td><a href="/excluir/{{treino._id}}">X</a></td>
             <td><a href="/atualizar/{{treino._id}}">Atualizar</a></td>
