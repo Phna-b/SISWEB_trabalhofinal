@@ -52,6 +52,8 @@ class Conta(db.Model, UserMixin):
     email = db.Column(db.String,unique=True)
     password = db.Column(db.String(100))
     pessoa = relationship("Pessoa", back_populates="conta")
+    atividade = relationship("Atividade", back_populates="conta")
+    treino = relationship("Treino", back_populates="conta")
 
     def __init__(self, nome, email,password):
         self.nome = nome
@@ -70,5 +72,43 @@ class Conta(db.Model, UserMixin):
 
     def is_authenticated(self):
         return True
+
+
+class Atividade(db.Model):
+
+    __tablename__ = 'atividade'
+
+    _id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nome = db.Column(db.String)
+    carga = db.Column(db.Float)
+    series = db.Column(db.Integer)
+    repeticoes = db.Column(db.Integer)
+    conta_id = mapped_column(ForeignKey("conta.id"))
+
+    conta = relationship("Conta", back_populates="atividade")
+
+    def __init__(self, nome, carga, series, repeticoes):
+        self.nome = nome
+        self.carga = carga
+        self.series = series
+        self.repeticoes = repeticoes
+        self.conta_id = current_user.id
+
+
+class Treino(db.Model):
+
+    __tablename__ = 'treino'
+
+    _id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nome = db.Column(db.String)
+    data = db.Column(db.Date)
+    conta_id = mapped_column(ForeignKey("conta.id"))
+
+    conta = relationship("Conta", back_populates="treino")
+
+    def __init__(self, nome, data):
+        self.nome = nome
+        self.data = data
+        self.conta_id = current_user.id
 
 db.create_all()

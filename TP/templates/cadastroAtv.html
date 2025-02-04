@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='style.css')}}">
+    <title>Cadastro de Exercício</title>
+</head>
+<body>
+    <h1>Cadastro de Exercício</h1>
+    <hr>
+    <form action="{{ url_for('cadastrarAtividade') }}" method="POST">
+        <table>
+            <tr>
+                <td>Nome</td>
+                <td><input type="text" name="nome"></td>
+            </tr>
+            <tr>
+                <td>Carga</td>
+                <td><input type="number" name="carga"></td>
+            </tr>
+            <tr>
+                <td>Series</td>
+                <td><input type="number" name="series"></td>
+            </tr>
+            <tr>
+                <td>Repetições</td>
+                <td><input type="number" name="repeticoes"></td>
+            </tr>
+        </table><br>
+        <input type="submit" value="Adicionar">
+
+    </form>
+    <a href="/index">Voltar</a>
+</body>
+</html>
