@@ -133,7 +133,6 @@ def listaDeTreinos():
 @login_required
 def listarTreino(id):
     atividades = Atividade.query.filter_by(treino_id=id)
-
     treino = Treino.query.filter_by(_id=id).first()
 
     if(request.method == "POST"):
