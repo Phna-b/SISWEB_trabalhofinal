@@ -5,12 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet"  href="{{ url_for('static', filename='style.css')}}">
-    <title>Cadastro de Exercício</title>
+    <title>Atividades do treino</title>
 </head>
 <body>
-    <h1>Cadastro de Exercício</h1>
+    <h1>Lista de Treinos</h1>
     <hr>
-    <form action="{{ url_for('cadastrarAtividade') }}" method="POST">
+
+    <table border="4">
+        <tr>
+            <td>Nome</td>
+            <td>Carga</td>
+            <td>Series</td>
+            <td>Repetições</td>
+        </tr>
+        {% for atividade in atividades%}
+        <tr>
+            <td>{{atividade.nome}}</td>
+            <td>{{atividade.carga }}</td>
+            <td>{{atividade.series}}</td>
+            <td>{{atividade.repeticoes}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+
+    <h1>Atividades do treino de {{treino.nome}}</h1>
+    <hr>
+
+    <form action="/listarTreino/{{treino._id}}" method="POST">
         <table>
             <tr>
                 <td>Nome</td>
@@ -28,14 +49,9 @@
                 <td>Repetições</td>
                 <td><input type="number" name="repeticoes"></td>
             </tr>
-            <tr>
-                <td>ID treino</td>
-                <td><input type="number" name="idtreino"></td>
-            </tr>
         </table><br>
         <input type="submit" value="Adicionar">
 
     </form>
-    <a href="/index">Voltar</a>
 </body>
 </html>
