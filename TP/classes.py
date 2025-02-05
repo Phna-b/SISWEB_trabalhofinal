@@ -84,15 +84,18 @@ class Atividade(db.Model):
     series = db.Column(db.Integer)
     repeticoes = db.Column(db.Integer)
     conta_id = mapped_column(ForeignKey("conta.id"))
+    treino_id = mapped_column(ForeignKey("treino._id"))
 
+    treino = relationship("Treino", back_populates="atividade")
     conta = relationship("Conta", back_populates="atividade")
 
-    def __init__(self, nome, carga, series, repeticoes):
+    def __init__(self, nome, carga, series, repeticoes,treinoid):
         self.nome = nome
         self.carga = carga
         self.series = series
         self.repeticoes = repeticoes
         self.conta_id = current_user.id
+        self.treino_id = treinoid
 
 
 class Treino(db.Model):
@@ -105,7 +108,7 @@ class Treino(db.Model):
     conta_id = mapped_column(ForeignKey("conta.id"))
 
     conta = relationship("Conta", back_populates="treino")
-
+    atividade = relationship("Atividade", back_populates="treino")
     def __init__(self, nome, data):
         self.nome = nome
         self.data = data

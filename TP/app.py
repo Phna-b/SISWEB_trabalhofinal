@@ -89,9 +89,10 @@ def cadastrarAtividade():
         carga = request.form.get("carga")
         series = request.form.get("series")
         repeticoes = request.form.get("repeticoes")
+        idtreino = request.form.get("idtreino")
 
         if nome and carga and series and repeticoes:
-            p = Atividade(nome, carga, series, repeticoes)
+            p = Atividade(nome, carga, series, repeticoes,idtreino)
             db.session.add(p)
             db.session.commit()
     return redirect(url_for("index"))
@@ -128,7 +129,26 @@ def listaDeTreinos():
     treinos = Treino.query.filter_by(conta_id=current_user.id)
     return render_template("treino/lista.html", treinos = treinos)
 
+@app.route("/listarTreino/<int:id>", methods=['GET','POST'])
+@login_required
+def listarTreino(id):
+    atividades = Atividade.query.filter_by(treino_id=id)
+    treino = Treino.query.filter_by(_id=id).first()
 
+    if(request.method == "POST"):
+        nome = request.form.get("nome")
+        carga = request.form.get("carga")
+        series = request.form.get("series")
+        repeticoes = request.form.get("repeticoes")
+        idtreino = id
+
+        if nome and carga and series and repeticoes:
+            p = Atividade(nome, carga, series, repeticoes,idtreino)
+            db.session.add(p)
+            db.session.commit()
+
+
+    return render_template("treino/listarTreino.html", treino=treino, atividades=atividades)
 
 
 
