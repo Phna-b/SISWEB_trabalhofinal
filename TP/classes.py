@@ -10,6 +10,8 @@ app = Flask(__name__, static_url_path='/static')
 app.app_context().push()
 app.config['SECRET_KEY'] = 'secret-key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+UPLOAD_FOLDER = 'static/videos'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 db = SQLAlchemy(app)
 
 #Configuração para impedir acesso das páginas sem login
@@ -113,5 +115,11 @@ class Treino(db.Model):
         self.nome = nome
         self.data = data
         self.conta_id = current_user.id
+
+
+class Video(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    filename = db.Column(db.String(255), nullable=False)  # Caminho do arquivo
 
 db.create_all()

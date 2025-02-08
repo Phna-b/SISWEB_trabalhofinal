@@ -1,5 +1,5 @@
 from datetime import datetime
-
+import os
 from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_login import login_required, current_user, login_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
@@ -150,6 +150,35 @@ def listarTreino(id):
 
     return render_template("treino/listarTreino.html", treino=treino, atividades=atividades)
 
+#####################################################
+# Rota para upload de vídeos
+
+@app.route('/videos')
+def videos():
+    videos = Video.query.all()
+    return render_template('videos/videos.html', videos=videos)
+
+# Rota para upload de vídeos
+@app.route('/upload', methods=['POST'])
+def upload_video():
+    if 'file' not in request.files:
+        return "Nenhum arquivo enviado", 400
+
+    file = request.files['file']
+
+    if file.filename == '':
+        return "Nome de arquivo inválido", 400
+
+
+    filename = file.filename
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    file.save(file_path)
+
+    new_video = Video(title=request.form['title'], filename=filename)
+    db.session.add(new_video)
+    db.session.commit()
+
+    return redirect(url_for('videos'))
 
 
 
