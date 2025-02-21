@@ -180,7 +180,9 @@ def upload_video():
 
     return redirect(url_for('videos'))
 
-
+@app.route("/sidebar")
+def sidebar():
+    return render_template("sidebar.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
