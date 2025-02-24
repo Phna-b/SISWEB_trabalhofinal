@@ -3,7 +3,7 @@ from flask_login import login_required, current_user, login_user, logout_user
 
 @app.route('/login')
 def login():
-    return render_template('login.html')
+    return render_template('login/login.html')
 
 @app.route('/login', methods=['GET','POST'])
 def login_post():
@@ -24,7 +24,7 @@ def login_post():
 
 @app.route('/signup')
 def signup():
-    return render_template('signup.html')
+    return render_template('login/signup.html')
 
 @app.route('/signup', methods=['GET','POST'])
 def signup_post():
@@ -47,7 +47,7 @@ def signup_post():
 
 @app.route('/recovery')
 def recovery():
-    return render_template('recovery.html')
+    return render_template('login/recovery.html')
 
 @app.route("/recovery", methods=['GET','POST'])
 def recovery_post():

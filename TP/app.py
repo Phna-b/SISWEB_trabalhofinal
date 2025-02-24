@@ -12,66 +12,9 @@ from login import *
 def index():
     return render_template("index.html")
 
-@app.route("/cadastrar")
-@login_required
-def cadastrar():
-    return render_template("cadastro.html")
-@app.route("/cadastro", methods=['GET','POST'])
-@login_required
-def cadastro():
-    if(request.method == "POST"):
-        nome = request.form.get("nome")
-        telefone = request.form.get("telefone")
-        cpf = request.form.get("cpf")
-        email = request.form.get("email")
-
-        if nome and telefone and cpf and email:
-            p = Pessoa(nome, telefone, cpf, email)
-            db.session.add(p)
-            db.session.commit()
-    return redirect(url_for("index"))
-
-@app.route("/lista")
-@login_required
-def lista():
-    pessoas = Pessoa.query.filter_by(conta_id=current_user.id)
-    #pessoas = Pessoa.query.all()
-    return render_template("lista.html", pessoas = pessoas)
-
-@app.route("/excluir/<int:id>")
-@login_required
-def excluir(id):
-    pessoa = Pessoa.query.filter_by(_id=id).first()
-
-    db.session.delete(pessoa)
-    db.session.commit()
-
-    pessoas = Pessoa.query.all()
-    return render_template("lista.html", pessoas = pessoas)
-
-@app.route("/atualizar/<int:id>", methods=['GET','POST'])
-@login_required
-def atualizar(id):
-    pessoa = Pessoa.query.filter_by(_id=id).first()
-
-    if(request.method == "POST"):
-        nome = request.form.get("nome")
-        telefone = request.form.get("telefone")
-        email = request.form.get("email")
-
-        if nome and telefone and email:
-            pessoa.nome = nome
-            pessoa.telefone = telefone
-            pessoa.email = email
-
-            db.session.commit()
-
-            return redirect(url_for("lista"))
-    return render_template("atualizar.html",pessoa=pessoa)
-
 @app.route("/")
 def base():
-    return render_template("login.html")
+    return render_template("login/login.html")
 
 
 ####################################################### Atividades
