@@ -7,6 +7,16 @@
     <link rel="stylesheet"  href="{{ url_for('static', filename='style.css')}}">
     <title>Treinos</title>
 </head>
+
+
+<div>
+    {% include 'sidebar.html' %}
+</div>
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+
+
 <body>
     <h1>Lista de Treinos</h1>
     <hr>
