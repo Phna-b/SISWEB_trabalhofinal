@@ -46,7 +46,7 @@ def cadastrarAtividade():
 @app.route("/novoTreinoPagina")
 @login_required
 def novoTreinoPagina():
-    return render_template("novoTreino.html")
+    return render_template("treino/novoTreino.html")
 
 @app.route("/novoTreino", methods=['GET','POST'])
 @login_required
