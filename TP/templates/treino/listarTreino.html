@@ -29,6 +29,7 @@
 					        <th>Carga</th>
 					        <th>Séries</th>
                             <th>Repetições</th>
+                            <th>Editar</th>
 					        <th>Excluir</th>
 					      </tr>
 					    </thead>
@@ -39,7 +40,8 @@
                                 <td scope="row" class="scope">{{atividade.carga }}</td>
                                 <td scope="row" class="scope">{{atividade.series }}</td>
                                 <td scope="row" class="scope">{{atividade.repeticoes }}</td>
-                                <td><a href="/excluir/{{treino._id}}"><i class='bx bx-trash icon'></i></a></td>
+                                <td><a href="/atualizarAtividadesTreino/{{atividade._id}}"><i class='bx bx-edit icon'></i></a></td>
+                                <td><a href="/excluirAtvTreino/{{atividade._id}}"><i class='bx bx-trash icon'></i></a></td>
                                  
                             </tr>
                             {%endfor%}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='style.css')}}">
+    <title>Página de Atualização</title>
+</head>
+<body>
+    <h1>Página de Atualização</h1>
+    <hr>
+    <form action="" method="POST">
+        <table>
+            <tr>
+                <td>Nome</td>
+                <td><input type="text" name="nome" value="{{atividade.nome}}"></td>
+                <td><input type="text" name="nome" value="{{atividade.carga}}"></td>
+                <td><input type="text" name="nome" value="{{atividade.series}}"></td>
+                <td><input type="text" name="nome" value="{{atividade.repeticoes}}"></td>
+            </tr>
+        </table><br>
+        <input type="submit" value="Atualizar dados">
+
+    </form>
+    <a href="/index">Voltar</a>
+</body>
+</html>
+

@@ -17,29 +17,6 @@ def base():
     return render_template("login/login.html")
 
 
-####################################################### Atividades
-
-@app.route("/cadastrarAtividadePagina")
-@login_required
-def cadastrarAtividadePagina():
-    return render_template("cadastroAtv.html")
-
-@app.route("/cadastrarAtividade", methods=['GET','POST'])
-@login_required
-def cadastrarAtividade():
-    if(request.method == "POST"):
-        nome = request.form.get("nome")
-        carga = request.form.get("carga")
-        series = request.form.get("series")
-        repeticoes = request.form.get("repeticoes")
-        idtreino = request.form.get("idtreino")
-
-        if nome and carga and series and repeticoes:
-            p = Atividade(nome, carga, series, repeticoes,idtreino)
-            db.session.add(p)
-            db.session.commit()
-    return redirect(url_for("index"))
-
 ##Adicionar página do dia de treino, adicionar atividades a esse objeto
 
 
@@ -92,6 +69,44 @@ def listarTreino(id):
 
 
     return render_template("treino/listarTreino.html", treino=treino, atividades=atividades)
+
+
+@app.route("/atualizarAtividadesTreino/<int:id>", methods=['GET','POST'])
+@login_required
+def atualizarAtvTreino(id):
+    atividade  = Atividade.query.filter_by(_id=id).first()
+
+    if(request.method == "POST"):
+        nome = request.form.get("nome")
+
+        if nome:
+            atividade.nome = nome
+
+
+            db.session.commit()
+
+            return redirect(url_for("listarTreino", id=atividade.treino_id))
+    return render_template("treino/atualizarAtividadesTreino.html",atividade=atividade)
+
+
+
+@app.route("/excluirAtvTreino/<int:id>")
+@login_required
+def excluirAtvTreino(id):
+    atividade = Atividade.query.filter_by(_id=id).first()
+
+    idRef = atividade.treino_id
+    print(atividade.treino_id)
+    db.session.delete(atividade)
+
+    db.session.commit()
+
+    return redirect(url_for("listarTreino", id=idRef))
+
+
+
+
+
 
 #####################################################
 # Rota para upload de vídeos
