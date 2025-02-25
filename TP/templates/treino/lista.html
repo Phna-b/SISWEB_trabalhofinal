@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet"  href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='styleTab.css')}}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Treinos</title>
 </head>
 
@@ -18,25 +19,38 @@
 
 
 <body>
-    <h1>Lista de Treinos</h1>
-    <hr>
-
-    <table border="4">
-        <tr>
-            <td>Nome</td>
-            <td>Data</td>
-            <td>Excluir</td>
-            <td>Atualizar</td>
-        </tr>
-        {% for treino in treinos%}
-        <tr>
-            <td><a href="/listarTreino/{{treino._id}}">{{treino.nome}}</a></td>
-            <td>{{treino.data }}</td>
-            <td><a href="/excluir/{{treino._id}}">X</a></td>
-            <td><a href="/atualizar/{{treino._id}}">Atualizar</a></td>
-        </tr>
-        {%endfor%}
-    </table>
-    <a href="/index">Voltar</a>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table">
+					    <thead class="thead-primary">
+					      <tr>
+					        <th>Nome</th>
+					        <th>Data</th>
+					        <th>Visualizar</th>
+                            <th>Editar</th>
+					        <th>Excluir</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+                            {% for treino in treinos%}
+                            <tr>
+                                <td scope="row" class="scope" >{{treino.nome}}</td>
+                                <td scope="row" class="scope">{{treino.data }}</td>
+                                <th><a href="/listarTreino/{{treino._id}}" class="btn btn-primary">Detalhes</a></td>
+                                <td><a href="/editar/{{treino._id}}"><i class='bx bx-edit icon'></i></a></td>
+                                <td><a href="/excluir/{{treino._id}}"><i class='bx bx-trash icon'></i></a></td>
+                                 
+                            </tr>
+                            {%endfor%}
+					    </tbody>
+					  </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 </html>

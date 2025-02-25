@@ -1,0 +1,104 @@
+/* Reset básico e tipografia */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: #f8f9fd;
+  color: #555;
+}
+
+/* Espaçamento da seção */
+.ftco-section {
+  padding: 4em 0;
+}
+
+/* Container centralizado */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Wrapper da tabela com scroll horizontal se necessário */
+.table-wrap {
+  overflow-x: auto;
+  margin: 2em 0;
+}
+
+/* Estilização da tabela */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho com fundo e tipografia aprimorados */
+.thead-primary th {
+  background-color: #6807f9;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 1em;
+  border-bottom: 2px solid #5a06d8;
+}
+
+/* Linhas do corpo com transição para efeito hover */
+.table tbody tr {
+  transition: background-color 0.3s ease;
+}
+.table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Células da tabela */
+.table th.scope,
+.table td {
+  padding: 1em;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+/* Destaque para as células de TLD */
+.table th.scope {
+  background-color: #f9f9f9;
+  font-weight: 600;
+}
+
+/* Botões com estilo moderno e transição suave */
+.btn {
+  display: inline-block;
+  padding: 0.5em 1.2em;
+  font-size: 0.9em;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 3px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #6807f9;
+  color: #fff;
+  border: none;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #5305c8;
+  box-shadow: 0 4px 12px rgba(83, 5, 200, 0.3);
+  outline: none;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    padding: 0.75em;
+  }
+}

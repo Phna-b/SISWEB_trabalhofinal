@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet"  href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='styleTab.css')}}">
     <title>Atividades do treino</title>
 </head>
 
@@ -17,50 +17,78 @@
 
 
 <body>
-    <h1>Lista de Treinos</h1>
-    <hr>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table">
+					    <thead class="thead-primary">
+					      <tr>
+					        <th>Nome</th>
+					        <th>Carga</th>
+					        <th>Séries</th>
+                            <th>Repetições</th>
+					        <th>Excluir</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+                            {% for atividade in atividades%}
+                            <tr>
+                                <th scope="row" class="scope" >{{atividade.nome}}</th>
+                                <td scope="row" class="scope">{{atividade.carga }}</td>
+                                <td scope="row" class="scope">{{atividade.series }}</td>
+                                <td scope="row" class="scope">{{atividade.repeticoes }}</td>
+                                <td><a href="/excluir/{{treino._id}}"><i class='bx bx-trash icon'></i></a></td>
+                                 
+                            </tr>
+                            {%endfor%}
+					    </tbody>
+					  </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    
+ 
 
-    <table border="4">
-        <tr>
-            <td>Nome</td>
-            <td>Carga</td>
-            <td>Series</td>
-            <td>Repetições</td>
-        </tr>
-        {% for atividade in atividades%}
-        <tr>
-            <td>{{atividade.nome}}</td>
-            <td>{{atividade.carga }}</td>
-            <td>{{atividade.series}}</td>
-            <td>{{atividade.repeticoes}}</td>
-        </tr>
-        {%endfor%}
-    </table>
 
-    <h1>Atividades do treino de {{treino.nome}}</h1>
-    <hr>
 
-    <form action="/listarTreino/{{treino._id}}" method="POST">
-        <table>
-            <tr>
-                <td>Nome</td>
-                <td><input type="text" name="nome"></td>
-            </tr>
-            <tr>
-                <td>Carga</td>
-                <td><input type="number" name="carga"></td>
-            </tr>
-            <tr>
-                <td>Series</td>
-                <td><input type="number" name="series"></td>
-            </tr>
-            <tr>
-                <td>Repetições</td>
-                <td><input type="number" name="repeticoes"></td>
-            </tr>
-        </table><br>
-        <input type="submit" value="Adicionar">
-
-    </form>
+    <section class="ftco-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+                        <h1>Atividades do treino de {{treino.nome}}</h1>
+                        <hr>
+                        <form action="/listarTreino/{{treino._id}}" method="POST">
+                            <table>
+                                <tr>
+                                    <td>Nome</td>
+                                    <td><input type="text" name="nome"></td>
+                                </tr>
+                                <tr>
+                                    <td>Carga</td>
+                                    <td><input type="number" name="carga"></td>
+                                </tr>
+                                <tr>
+                                    <td>Series</td>
+                                    <td><input type="number" name="series"></td>
+                                </tr>
+                                <tr>
+                                    <td>Repetições</td>
+                                    <td><input type="number" name="repeticoes"></td>
+                                </tr>
+                            </table><br>
+                            <input type="submit" value="Adicionar">
+                    
+                        </form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+ 
 </body>
 </html>
