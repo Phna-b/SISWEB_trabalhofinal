@@ -78,11 +78,15 @@ def atualizarAtvTreino(id):
 
     if(request.method == "POST"):
         nome = request.form.get("nome")
+        carga = request.form.get("carga")
+        repeticoes = request.form.get("repeticoes")
+        series = request.form.get("series")
 
-        if nome:
+        if nome and carga and series and repeticoes:
             atividade.nome = nome
-
-
+            atividade.carga = carga
+            atividade.series = series
+            atividade.repeticoes = repeticoes
             db.session.commit()
 
             return redirect(url_for("listarTreino", id=atividade.treino_id))
@@ -96,7 +100,7 @@ def excluirAtvTreino(id):
     atividade = Atividade.query.filter_by(_id=id).first()
 
     idRef = atividade.treino_id
-    print(atividade.treino_id)
+
     db.session.delete(atividade)
 
     db.session.commit()
@@ -106,7 +110,44 @@ def excluirAtvTreino(id):
 
 
 
+@app.route("/excluirTreino/<int:id>")
+@login_required
+def excluirTreino(id):
+    treino = Treino.query.filter_by(_id=id).first()
 
+    treinoAtv = Atividade.query.filter_by(treino_id=id).all()
+
+    db.session.delete(treino)
+
+    for atividade in treinoAtv:
+        db.session.delete(atividade)
+
+    db.session.commit()
+
+    return redirect(url_for("listaDeTreinos"))
+
+
+@app.route("/atualizarTreino/<int:id>", methods=['GET','POST'])
+@login_required
+def atualizarTreino(id):
+    treino  = Treino.query.filter_by(_id=id).first()
+
+    if(request.method == "POST"):
+        nome = request.form.get("nome")
+        data = request.form.get("data")
+
+        if nome and data:
+            treino.nome = nome
+            expiration_year = int(data[:4])
+            expiration_month = int(data[5:7])
+            expiration_date = int(data[8:10])
+            expiration_date = datetime(expiration_year, expiration_month, expiration_date)
+            treino.data = expiration_date
+
+            db.session.commit()
+
+            return redirect(url_for("listaDeTreinos"))
+    return render_template("treino/atualizarTreino.html",treino=treino)
 
 #####################################################
 # Rota para upload de vídeos
