@@ -6,7 +6,7 @@
 
 ### Resumo
   O trabalho prático desenvolvido para a disciplina CSI606 tem como foco manter um local anotação e consulta de como executar exercícios na academia. Possui um sistema de login para possíbilitar o uso de múltiplos
-  usuário e página de consulta, anotação e controle dos exercícios. As ferramentas utilizadas para desenvolvimento foram: Python, Flask, Virtualenv, SQLAlchemy, HTML/CSS.
+  usuário e página de consulta, anotação e controle dos exercícios. As ferramentas utilizadas para desenvolvimento foram: Python, Flask, Virtualenv, SQLAlchemy, HTML/CSS, JavaScript.
 <!-- Apresentar o tema. -->
 ### 1. Tema
 
