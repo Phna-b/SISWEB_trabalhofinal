@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gráfico de Treinos</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet"  href="{{ url_for('static', filename='styleTab.css')}}">
 </head>
 
 <div>
@@ -15,17 +16,77 @@
 </div>
 
 <body>
-    <h1>Treinos por Mês</h1>
-    <canvas id="graficoTreinos"></canvas>
+
+ 
+            <section class="ftco-section">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="table-wrap">
+                    <h1>Treinos por Mês</h1>
+                      <table class="table">
+                        
+                          <tr> 
+ 
+                            <label for="anoSelect">Selecione o Ano: </label>
+                            <select id="anoSelect" onchange="carregarDados()">
+                                <!-- Opções de ano serão preenchidas dinamicamente -->
+                            </select>
+                              <canvas id="graficoTreinos"></canvas>
+                          </tr>
+ 
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+   
 
     <script>
-        async function carregarDados() {
+        let chartInstance = null;  // Variável para armazenar o gráfico
+
+        // Função para carregar os anos disponíveis
+        async function carregarAnos() {
             const response = await fetch('/dados_treinos');
+            const data = await response.json();
+
+            // Extrair anos únicos dos dados disponíveis
+            const anosDisponiveis = [...new Set(data.labels.map(label => label.split('-')[0]))].sort();
+
+            const select = document.getElementById('anoSelect');
+            select.innerHTML = "";  // Limpa o seletor
+
+            // Adicionar anos disponíveis ao seletor
+            anosDisponiveis.forEach(ano => {
+                const option = document.createElement('option');
+                option.value = ano;
+                option.textContent = ano;
+                select.appendChild(option);
+            });
+
+            // Seleciona o último ano por padrão
+            select.value = anosDisponiveis[anosDisponiveis.length - 1];
+
+            // Carrega os dados do ano selecionado
+            carregarDados();
+        }
+
+        // Função para carregar os dados do servidor e atualizar o gráfico
+        async function carregarDados() {
+            const anoSelecionado = document.getElementById('anoSelect').value;
+            const response = await fetch(`/dados_treinos?ano=${anoSelecionado}`);
             const data = await response.json();
 
             const ctx = document.getElementById('graficoTreinos').getContext('2d');
 
-            new Chart(ctx, {
+            // Se o gráfico já existir, destrua-o para criar um novo
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            // Criar um novo gráfico
+            chartInstance = new Chart(ctx, {
                 type: 'bar',  // Gráfico de colunas
                 data: {
                     labels: data.labels,
@@ -47,7 +108,9 @@
                 }
             });
         }
-        carregarDados();
+
+        // Chamar a função para carregar os anos ao carregar a página
+        carregarAnos();
     </script>
 </body>
 </html>

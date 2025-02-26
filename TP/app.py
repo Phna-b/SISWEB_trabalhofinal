@@ -210,24 +210,28 @@ def excluirVideo(id):
 ########################
 ########################
 ########################
+
 @app.route('/grafico')
 def exibir_grafico():
     return render_template('dashboards/grafico.html')  # Página que exibe o gráfico
 
 @app.route('/dados_treinos')
 def dados_treinos():
-    # Consulta ao banco de dados para contar os treinos por mês
-    treinos_por_mes = (
+    ano_selecionado = request.args.get('ano', type=int)  # Obtém o ano da requisição
+    consulta = (
         db.session.query(
             func.extract('year', Treino.data).label("ano"),
             func.extract('month', Treino.data).label("mes"),
             func.count(Treino._id).label("quantidade")
         )
-        .filter(Treino.conta_id == current_user.id)  # Filtra os treinos do usuário logado
-        .group_by("ano", "mes")
-        .order_by("ano", "mes")
-        .all()
+        .filter(Treino.conta_id == current_user.id)
     )
+
+    # Filtrar por ano se um ano específico for selecionado
+    if ano_selecionado:
+        consulta = consulta.filter(func.extract('year', Treino.data) == ano_selecionado)
+
+    treinos_por_mes = consulta.group_by("ano", "mes").order_by("ano", "mes").all()
 
     # Criar estrutura JSON
     dados = {
@@ -235,7 +239,8 @@ def dados_treinos():
         "valores": [treino.quantidade for treino in treinos_por_mes]
     }
 
-    return jsonify(dados)  # Retorna os dados em formato JSON
+    return jsonify(dados)  # Retorna os dados filtrados por ano no formato JSON
+
 
 ########################
 ########################
