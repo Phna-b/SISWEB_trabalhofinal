@@ -34,6 +34,7 @@
                     <source src="{{ url_for('static', filename='videos/' + video.filename) }}" type="video/mp4">
                     Seu navegador não suporta o elemento de vídeo.
                 </video>
+                <td><a href="/excluirVideo/{{video.id}}"><i class='bx bx-trash icon'></i></a></td>
             </div>
             {% endfor %}
         </div>

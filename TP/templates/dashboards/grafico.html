@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico de Treinos</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<div>
+    {% include 'sidebar.html' %}
+</div>
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+
+<body>
+    <h1>Treinos por Mês</h1>
+    <canvas id="graficoTreinos"></canvas>
+
+    <script>
+        async function carregarDados() {
+            const response = await fetch('/dados_treinos');
+            const data = await response.json();
+
+            const ctx = document.getElementById('graficoTreinos').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',  // Gráfico de colunas
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Número de Treinos',
+                        data: data.valores,
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+        carregarDados();
+    </script>
+</body>
+</html>

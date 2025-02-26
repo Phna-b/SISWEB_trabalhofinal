@@ -1,6 +1,8 @@
 from datetime import datetime
 import os
-from flask import Flask, render_template, request, url_for, redirect, flash
+from flask import Flask, render_template, request, url_for, redirect, flash, jsonify
+from sqlalchemy.sql import func
+
 from flask_login import login_required, current_user, login_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -184,9 +186,66 @@ def upload_video():
 
     return redirect(url_for('videos'))
 
+
+
+@app.route("/excluirVideo/<int:id>")
+@login_required
+def excluirVideo(id):
+    video = Video.query.filter_by(id=id).first()
+    fileName = video.filename
+
+    db.session.delete(video)
+    path = app.config['UPLOAD_FOLDER']
+    dir = os.listdir(path)
+    for file in dir:
+        if file == fileName:
+            path = path + '/' + file
+            os.remove(path)
+            db.session.commit()
+
+
+
+    return redirect(url_for("listaVideos"))
+
+########################
+########################
+########################
+@app.route('/grafico')
+def exibir_grafico():
+    return render_template('dashboards/grafico.html')  # Página que exibe o gráfico
+
+@app.route('/dados_treinos')
+def dados_treinos():
+    # Consulta ao banco de dados para contar os treinos por mês
+    treinos_por_mes = (
+        db.session.query(
+            func.extract('year', Treino.data).label("ano"),
+            func.extract('month', Treino.data).label("mes"),
+            func.count(Treino._id).label("quantidade")
+        )
+        .filter(Treino.conta_id == current_user.id)  # Filtra os treinos do usuário logado
+        .group_by("ano", "mes")
+        .order_by("ano", "mes")
+        .all()
+    )
+
+    # Criar estrutura JSON
+    dados = {
+        "labels": [f"{int(treino.ano)}-{int(treino.mes):02d}" for treino in treinos_por_mes],
+        "valores": [treino.quantidade for treino in treinos_por_mes]
+    }
+
+    return jsonify(dados)  # Retorna os dados em formato JSON
+
+########################
+########################
+########################
+
+
 @app.route("/sidebar")
 def sidebar():
     return render_template("sidebar.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

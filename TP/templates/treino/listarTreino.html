@@ -35,17 +35,16 @@
 					      </tr>
 					    </thead>
 					    <tbody>
-                            {% for atividade in atividades%}
-                            <tr>
-                                <th scope="row" class="scope" >{{atividade.nome}}</th>
-                                <td scope="row" class="scope">{{atividade.carga }}</td>
-                                <td scope="row" class="scope">{{atividade.series }}</td>
-                                <td scope="row" class="scope">{{atividade.repeticoes }}</td>
-                                <td><a href="/atualizarAtividadesTreino/{{atividade._id}}"><i class='bx bx-edit icon'></i></a></td>
-                                <td><a href="/excluirAtvTreino/{{atividade._id}}"><i class='bx bx-trash icon'></i></a></td>
-                                 
-                            </tr>
-                            {%endfor%}
+                {% for atividade in atividades%}
+                    <tr>
+                      <th scope="row" class="scope" >{{atividade.nome}}</th>
+                      <td scope="row" class="scope">{{atividade.carga }}</td>
+                      <td scope="row" class="scope">{{atividade.series }}</td>
+                      <td scope="row" class="scope">{{atividade.repeticoes }}</td>
+                      <td><a href="/atualizarAtividadesTreino/{{atividade._id}}"><i class='bx bx-edit icon'></i></a></td>
+                      <td><a href="/excluirAtvTreino/{{atividade._id}}"><i class='bx bx-trash icon'></i></a></td>
+                    </tr>
+                  {%endfor%}
 					    </tbody>
 					  </table>
 					</div>
