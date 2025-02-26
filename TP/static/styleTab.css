@@ -104,7 +104,7 @@ body {
 }
 
 
-input[type="submit"] {
+input[type="submit"], input[type="file"] {
     background-color: #6200EA;
     color: white;
     border: none;
@@ -116,8 +116,104 @@ input[type="submit"] {
     transition: background 0.3s ease-in-out;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover , input[type="file"]:hover{
     background-color: #4500B0;
 }
 
 
+
+.video-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+ 
+.video-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    max-width: 350px;
+}
+
+
+.video-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #6200EA;
+}
+
+
+.video-player {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+
+@media (max-width: 768px) {
+    .video-gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.custom-video-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+.video-player {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.video-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background: #6200EA;
+    border-radius: 8px;
+}
+
+.video-controls button {
+    background: white;
+    color: #6200EA;
+    border: none;
+    padding: 8px 12px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.video-controls button:hover {
+    background: #4500B0;
+    color: white;
+}
+
+.video-controls input[type="range"] {
+    width: 100px;
+    cursor: pointer;
+}
+
+.video-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.plyr {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

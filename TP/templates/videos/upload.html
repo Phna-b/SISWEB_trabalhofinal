@@ -1,16 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='styleTab.css')}}">
     <title>Galeria de Vídeos</title>
 </head>
-<body>
-    <h1>Galeria de Vídeos</h1>
 
-    <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
-        <input type="text" name="title" placeholder="Título do vídeo" required>
-        <input type="file" name="file" accept="video/*" required>
-        <button type="submit">Enviar</button>
-    </form>
+<div>
+    {% include 'sidebar.html' %}
+</div>
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+
+ 
+
+<body>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <section class="ftco-section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="table-wrap">
+                <h1>Galeria de Vídeos</h1>
+                  <table class="table">
+                    <thead class="thead-primary">
+                      <tr>
+                        <th><input type="text" name="title" placeholder="Título do vídeo" required></th>
+                          <td scope="row" class="scope" ><input type="file" name="file" accept="video/*" required></td>
+                      </tr> 
+                    </thead>
+                    <tbody>
+                      <tr> 
+                          <td></td>
+                          <td><input type="submit" value="Enviar"></a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </form>
 </body>
 </html>

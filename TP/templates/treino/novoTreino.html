@@ -17,39 +17,36 @@
 
 <body>
     <h1>Novo Treino</h1>
- 
-
     <form action="{{ url_for('novoTreino') }}" method="POST">
-    <section class="ftco-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="table-wrap">
-                        <h1>Adicionar novo treino</h1>
-						<table class="table">
-					    <thead class="thead-primary">
-					      <tr>
-					        <th>Nome</th>
-                            <td scope="row" class="scope" ><input type="text" name="nome"></td>
-                          </tr> 
-                          <tr>
-                            <th>Data</th>
-                            <td scope="row" class="scope"><input type="date" name="data"></td>  
-					      </tr>
-					    </thead>
-					    <tbody>
-                            <tr> 
-                                <td></td>
-                                <td><input type="submit" value="Adicionar"></a></td>
-                            </tr>
-					    </tbody>
-                 
-					  </table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</form>
+      <section class="ftco-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-wrap">
+                            <h1>Adicionar novo treino</h1>
+                <table class="table">
+                  <thead class="thead-primary">
+                    <tr>
+                      <th>Nome</th>
+                        <td scope="row" class="scope" ><input type="text" name="nome"></td>
+                    </tr> 
+                    <tr>
+                        <th>Data</th>
+                        <td scope="row" class="scope"><input type="date" name="data"></td>  
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr> 
+                        <td></td>
+                        <td><input type="submit" value="Adicionar"></a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </form>
 </body>
 </html>

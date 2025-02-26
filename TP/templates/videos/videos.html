@@ -4,28 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galeria de Vídeos</title>
+    <link rel="stylesheet"  href="{{ url_for('static', filename='styleTab.css')}}">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const players = document.querySelectorAll(".player");  
+            players.forEach(player => new Plyr(player));  
+        });
+    </script>
 </head>
 
- 
+<div>
+    {% include 'sidebar.html' %}
+</div>
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+
 
 <body>
-    <h1>Galeria de Vídeos</h1>
-    
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="text" name="title" placeholder="Título do vídeo" required>
-        <input type="file" name="file" accept="video/*" required>
-        <button type="submit">Enviar</button>
-    </form>
 
-    <h2>Vídeos</h2>
-    {% for video in videos %}
-        <div>
-            <h3>{{ video.title }}</h3>
-            <video width="320" height="240" controls>
-                <source src="{{ url_for('static', filename='videos/' + video.filename) }}" type="video/mp4">
-                Seu navegador não suporta o elemento de vídeo.
-            </video>
+    <div class="container">        
+        <div class="video-gallery">
+            {% for video in videos %}
+            <div class="video-card">
+                <h3 class="video-title">{{ video.title }}</h3>
+                <video class="video-player player" playsinline controls id="player">
+                    <source src="{{ url_for('static', filename='videos/' + video.filename) }}" type="video/mp4">
+                    Seu navegador não suporta o elemento de vídeo.
+                </video>
+            </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    </div>
+
 </body>
 </html>
+
+

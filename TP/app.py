@@ -152,10 +152,15 @@ def atualizarTreino(id):
 #####################################################
 # Rota para upload de vídeos
 
+@app.route('/listaVideos')
+def listaVideos():
+    videos = Video.query.all()
+    return render_template('videos/videos.html', videos=videos)
+
 @app.route('/videos')
 def videos():
     videos = Video.query.all()
-    return render_template('videos/videos.html', videos=videos)
+    return render_template('videos/upload.html', videos=videos)
 
 # Rota para upload de vídeos
 @app.route('/upload', methods=['POST'])
