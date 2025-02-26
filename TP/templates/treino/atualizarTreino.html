@@ -4,24 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet"  href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='styleTab.css')}}">
     <title>Página de Atualização</title>
 </head>
-<body>
-    <h1>Página de Atualização</h1>
-    <hr>
-    <form action="" method="POST">
-        <table>
-            <tr>
-                <td>Nome</td>
-                <td><input type="text" name="nome" value="{{treino.nome}}"></td>
-                <td><input type="text" name="data" value="{{treino.data}}"></td>
-            </tr>
-        </table><br>
-        <input type="submit" value="Atualizar dados">
 
+<div>
+    {% include 'sidebar.html' %}
+</div>
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+
+
+<body>
+    <form action="" method="POST">
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-wrap">
+                            <h1>Editar treino</h1>
+                            <table class="table">
+                            <thead class="thead-primary">
+                              <tr>
+                                <th>Nome do treino</th>
+                                <td scope="row" class="scope" ><input type="text" name="nome" value="{{treino.nome}}"></td>
+                              </tr> 
+                              <tr>
+                                <th>Data</th>
+                                <td scope="row" class="scope"><input type="date" name="data" value="{{treino.data}}"></td>  
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr> 
+                                    <td></td>
+                                    <td><input type="submit" value="Atualizar dados"></a></td>
+                                </tr>
+                            </tbody>
+                     
+                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </form>
-    <a href="/index">Voltar</a>
+
 </body>
 </html>
 

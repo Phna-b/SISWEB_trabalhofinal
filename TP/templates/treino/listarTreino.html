@@ -22,11 +22,12 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-wrap">
+                        <h1>Atividades do treino de {{treino.nome}}</h1>
 						<table class="table">
 					    <thead class="thead-primary">
 					      <tr>
 					        <th>Nome</th>
-					        <th>Carga</th>
+					        <th>Carga (Kg)</th>
 					        <th>Séries</th>
                             <th>Repetições</th>
                             <th>Editar</th>
@@ -53,44 +54,47 @@
 		</div>
 	</section>
     
- 
+    <hr>
 
-
-
-    <section class="ftco-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="table-wrap">
-                        <h1>Atividades do treino de {{treino.nome}}</h1>
-                        <hr>
-                        <form action="/listarTreino/{{treino._id}}" method="POST">
-                            <table>
-                                <tr>
-                                    <td>Nome</td>
-                                    <td><input type="text" name="nome"></td>
+    <form action="/listarTreino/{{treino._id}}" action="" method="POST">
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-wrap">
+                            <h1>Adicionar atividade ao treino</h1>
+                            <table class="table">
+                            <thead class="thead-primary">
+                              <tr>
+                                <th>Nome da atividade</th>
+                                <td scope="row" class="scope" ><input type="text" name="nome"></td>
+                              </tr> 
+                              <tr>
+                                <th>Carga (Kg)</th>
+                                <td scope="row" class="scope"><input type="text" name="carga"></td>  
+                              </tr>
+                              <tr>
+                                <th>Séries</th>
+                                <td scope="row" class="scope"><input type="text" name="series"></td>  
+                              </tr>
+                              <tr>
+                                <th>Repetições</th>
+                                <td scope="row" class="scope"><input type="text" name="repeticoes"></td>  
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr> 
+                                    <td></td>
+                                    <td><input type="submit" value="Atualizar dados"></a></td>
                                 </tr>
-                                <tr>
-                                    <td>Carga</td>
-                                    <td><input type="number" name="carga"></td>
-                                </tr>
-                                <tr>
-                                    <td>Series</td>
-                                    <td><input type="number" name="series"></td>
-                                </tr>
-                                <tr>
-                                    <td>Repetições</td>
-                                    <td><input type="number" name="repeticoes"></td>
-                                </tr>
-                            </table><br>
-                            <input type="submit" value="Adicionar">
-                    
-                        </form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
- 
+                            </tbody>
+                     
+                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
 </body>
 </html>

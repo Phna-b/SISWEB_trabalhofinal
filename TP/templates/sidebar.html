@@ -21,6 +21,12 @@
  
                 <ul class="menu-links">
                     <li class="nav-link">
+                        <a href="{{ url_for('index') }}">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Dash</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
                         <a href="{{url_for('novoTreinoPagina')}}">
                             <i class='bx bx-list-plus icon'></i>
                             <span class="text nav-text">Novo treino</span>
@@ -36,12 +42,6 @@
                         <a href="{{url_for('videos')}}">
                             <i class='bx bx-book-alt icon'></i>
                             <span class="text nav-text">Vídeos</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="{{ url_for('index') }}">
-                            <i class='bx bx-home-alt icon'></i>
-                            <span class="text nav-text">Dash</span>
                         </a>
                     </li>
                 </ul>

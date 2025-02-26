@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet"  href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='styleTab.css')}}">
     <title>Novo Treino</title>
 </head>
 
@@ -17,21 +17,39 @@
 
 <body>
     <h1>Novo Treino</h1>
-    <hr>
-    <form action="{{ url_for('novoTreino') }}" method="POST">
-        <table>
-            <tr>
-                <td>Nome</td>
-                <td><input type="text" name="nome"></td>
-            </tr>
-            <tr>
-                <td>Data</td>
-                <td><input type="date" name="data"></td>
-            </tr>
-        </table><br>
-        <input type="submit" value="Adicionar">
+ 
 
-    </form>
-    <a href="/index">Voltar</a>
+    <form action="{{ url_for('novoTreino') }}" method="POST">
+    <section class="ftco-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+                        <h1>Adicionar novo treino</h1>
+						<table class="table">
+					    <thead class="thead-primary">
+					      <tr>
+					        <th>Nome</th>
+                            <td scope="row" class="scope" ><input type="text" name="nome"></td>
+                          </tr> 
+                          <tr>
+                            <th>Data</th>
+                            <td scope="row" class="scope"><input type="date" name="data"></td>  
+					      </tr>
+					    </thead>
+					    <tbody>
+                            <tr> 
+                                <td></td>
+                                <td><input type="submit" value="Adicionar"></a></td>
+                            </tr>
+					    </tbody>
+                 
+					  </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</form>
 </body>
 </html>
