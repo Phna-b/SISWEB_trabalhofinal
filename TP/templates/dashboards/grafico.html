@@ -30,11 +30,19 @@
  
                             <label for="anoSelect">Selecione o Ano: </label>
                             <select id="anoSelect" onchange="carregarDados()">
-                                <!-- Opções de ano serão preenchidas dinamicamente -->
                             </select>
                               <canvas id="graficoTreinos"></canvas>
                           </tr>
  
+                          <tr>  
+                            <label for="atividadeSelect">Selecione a Atividade:</label>
+                            <select id="atividadeSelect" onchange="carregarDados1()">
+                                <!-- Opções de atividade serão preenchidas dinamicamente -->
+                            </select>
+                        
+                            <canvas id="graficoCargas"></canvas>
+                          </tr>
+
                       </table>
                     </div>
                   </div>
@@ -111,6 +119,93 @@
 
         // Chamar a função para carregar os anos ao carregar a página
         carregarAnos();
+
+
+        //////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////
+        let chartInstance1 = null;  // Variável para armazenar o gráfico
+
+        // Função para carregar as atividades disponíveis
+        async function carregarAtividades1() {
+            const response = await fetch('/dados_evolucao_carga');
+            const data = await response.json();
+
+            const select = document.getElementById('atividadeSelect');
+            select.innerHTML = "";  // Limpa o seletor
+
+            // Adicionar a opção padrão "Todas"
+            const optionAll = document.createElement('option');
+            optionAll.value = "";
+            optionAll.textContent = "Todas";
+            select.appendChild(optionAll);
+
+            // Adicionar atividades disponíveis ao seletor
+            data.atividades.forEach(nome => {
+                const option = document.createElement('option');
+                option.value = nome;
+                option.textContent = nome;
+                select.appendChild(option);
+            });
+
+            // Carrega os dados da atividade selecionada
+            carregarDados1();
+        }
+
+        // Função para carregar os dados do servidor e atualizar o gráfico
+        async function carregarDados1() {
+            const atividadeSelecionada = document.getElementById('atividadeSelect').value;
+            const url = atividadeSelecionada ? `/dados_evolucao_carga?nome=${atividadeSelecionada}` : '/dados_evolucao_carga';
+            
+            const response = await fetch(url);
+            const data = await response.json();
+
+            const ctx = document.getElementById('graficoCargas').getContext('2d');
+
+            // Se o gráfico já existir, destrua-o para criar um novo
+            if (chartInstance1) {
+                chartInstance1.destroy();
+            }
+
+            // Criar um novo gráfico de linha
+            chartInstance1 = new Chart(ctx, {
+                type: 'line',  // Gráfico de linha para evolução das cargas
+                data: {
+                    labels: data.labels,  // Atividades registradas (ex: "Atividade 1", "Atividade 2")
+                    datasets: [{
+                        label: 'Carga Utilizada (kg)',
+                        data: data.valores,  // Carga de cada atividade
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.3  // Suaviza as curvas da linha
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Carga (kg)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Registro das Atividades'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chamar a função para carregar as atividades ao carregar a página
+        carregarAtividades1();
+ 
     </script>
 </body>
 </html>

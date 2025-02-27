@@ -212,10 +212,12 @@ def excluirVideo(id):
 ########################
 
 @app.route('/grafico')
+@login_required
 def exibir_grafico():
     return render_template('dashboards/grafico.html')  # Página que exibe o gráfico
 
 @app.route('/dados_treinos')
+@login_required
 def dados_treinos():
     ano_selecionado = request.args.get('ano', type=int)  # Obtém o ano da requisição
     consulta = (
@@ -238,7 +240,7 @@ def dados_treinos():
         "labels": [f"{int(treino.ano)}-{int(treino.mes):02d}" for treino in treinos_por_mes],
         "valores": [treino.quantidade for treino in treinos_por_mes]
     }
-
+    print(dados)
     return jsonify(dados)  # Retorna os dados filtrados por ano no formato JSON
 
 
@@ -246,6 +248,33 @@ def dados_treinos():
 ########################
 ########################
 
+@app.route('/dados_evolucao_carga')
+def dados_evolucao_carga():
+    nome_atividade = request.args.get('nome', type=str)  # Obtém o nome da atividade
+
+    consulta = (
+        db.session.query(Atividade._id, Atividade.carga, Atividade.nome)
+        .filter(Atividade.conta_id == current_user.id)  # Filtra atividades do usuário logado
+    )
+
+    # Se um nome foi selecionado, filtra pelo nome da atividade
+    if nome_atividade:
+        consulta = consulta.filter(Atividade.nome == nome_atividade)
+
+    atividades = consulta.order_by(Atividade._id).all()
+
+    # Criar estrutura JSON
+    dados = {
+        "labels": [f"Atividade {atividade._id}" for atividade in atividades],  # ID de cada atividade
+        "valores": [atividade.carga for atividade in atividades],  # Carga usada
+        "atividades": list(set(atividade.nome for atividade in atividades))  # Lista única de nomes de atividades
+    }
+
+    return jsonify(dados)  # Retorna os dados filtrados por nome no formato JSON
+
+########################
+########################
+########################
 
 @app.route("/sidebar")
 def sidebar():
