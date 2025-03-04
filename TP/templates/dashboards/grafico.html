@@ -6,7 +6,6 @@
     <title>Gráfico de Treinos</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet"  href="{{ url_for('static', filename='styleTab.css')}}">
-    <link rel="stylesheet"  href="{{ url_for('static', filename='script.js')}}">
 </head>
 
 <div>
@@ -17,43 +16,32 @@
 </div>
 
 <body>
+    <section class="ftco-section">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            <div class="table-wrap">
+            <h1>Treinos por Mês</h1>
+                <table class="table">
+                
+                    <tr> 
+                    <label for="anoSelect">Selecione o Ano: </label>
+                    <select id="anoSelect" onchange="carregarDados()"></select>
+                    <canvas id="graficoTreinos"></canvas>
+                    </tr>
 
- 
-            <section class="ftco-section">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="table-wrap">
-                    <h1>Treinos por Mês</h1>
-                      <table class="table">
-                        
-                          <tr> 
- 
-                            <label for="anoSelect">Selecione o Ano: </label>
-                            <select id="anoSelect" onchange="carregarDados()">
-                            </select>
-                              <canvas id="graficoTreinos"></canvas>
-                          </tr>
- 
-                          <tr>  
-                            <label for="atividadeSelect">Selecione a Atividade:</label>
-                            <select id="atividadeSelect" onchange="carregarDados1()">
-                                <!-- Opções de atividade serão preenchidas dinamicamente -->
-                            </select>
-                        
-                            <canvas id="graficoCargas"></canvas>
-                          </tr>
+                    <tr>  
+                    <label for="atividadeSelect">Selecione a Atividade:</label>
+                    <select id="atividadeSelect" onchange="carregarDados1()"></select>
+                    <canvas id="graficoCargas"></canvas>
+                    </tr>
 
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-   
-
-            <script src="{{ url_for('static', filename='script.js') }}"></script>
-        
-    </script>
+                </table>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

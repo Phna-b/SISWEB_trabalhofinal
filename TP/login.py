@@ -19,7 +19,7 @@ def login_post():
         return redirect(url_for('login'))
 
     login_user(user)  # Faz login do usuário  --- E mantém os daods salvos
-    return redirect(url_for('index'))
+    return redirect(url_for('exibir_grafico'))
 
 
 @app.route('/signup')

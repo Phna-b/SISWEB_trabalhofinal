@@ -9,10 +9,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from classes import *
 from login import *
 
-@app.route("/index")
-@login_required
-def index():
-    return render_template("index.html")
 
 @app.route("/")
 def base():
@@ -43,7 +39,7 @@ def novoTreino():
             p = Treino(nome, expiration_date)
             db.session.add(p)
             db.session.commit()
-    return redirect(url_for("index"))
+    return redirect(url_for("novoTreinoPagina"))
 
 @app.route("/listaDeTreinos")
 @login_required
