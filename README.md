@@ -10,8 +10,7 @@
 <!-- Apresentar o tema. -->
 ### 1. Tema
 
-  O trabalho final tem como tema o desenvolvimento de hábitos de exercícios e incetivo à pratica dos mesmos. Com uma interface amigável é possível selecionar fichas de exercícios preenchimento das repetições e 
-  pesos utilizados durante o treinamemento. Com o auxilio de acompanhamento profissional seria possível a utilização das informações do aplicativo para desenvolvimento de novas fichas, assim complementando as informações de perifl do usuário e possibilitando uma abordagem ainda mais direcionada. 
+  O trabalho final tem como tema o desenvolvimento de hábitos de exercícios e incetivo à pratica dos mesmos. Com uma interface amigável é possível visualizar excercícios e adicionar registros do treinamento e também detalhes dos excercícios realizados. Como repetições, pesos e séries. Com o auxilio de acompanhamento profissional seria possível a utilização das informações do aplicativo para desenvolvimento de novas fichas, assim complementando as informações de perifl do usuário e possibilitando uma abordagem ainda mais direcionada com base no desenvolvimento. 
 
 <!-- Descrever e limitar o escopo da aplicação. -->
 ### 2. Escopo
@@ -22,22 +21,25 @@
     Recuperação de senha;
     Visualização de fichas;
     Cadastro de execução de exercícios;
+    Dashboards personalizados;
     Visualização de vídeos.
 <!-- Apresentar restrições de funcionalidades e de escopo. -->
 ### 3. Restrições
 
-  Neste trabalho não serão considerados funcionalidades para adiação de fichas, filtro dinamico dos registros. (Com o progresso do desenvolvimento novas restrições irão aparecer).
-
+  Neste trabalho não serão considerados funcionalidades para adiação de fichas fixas e filtro dinamico dos registros.
+  
 <!-- Construir alguns protótipos para a aplicação, disponibilizá-los no Github e descrever o que foi considerado. //-->
 ### 4. Protótipo
 
   Protótipos para das páginas elaborados:
     Login;
     Signup (Cadastro de usuários);
-    Menu principal (Index);
-    Listagem dos registros de exercícios de cada conta (lista);
-    Cadastro de novos registros (cadastro);
-    Atualização de registro (atualizar).
+    Dashboards (Index);
+    Página de novo treino;
+    Listagem dos treinos (lista);
+    Lista dos excercícios de cada treino;
+    Vídeos exemplo dos excercícios (cadastro);
+    Upload de novos vídeos (atualizar).
   Todos podem ser encontrado em TP/templates.
 
     
