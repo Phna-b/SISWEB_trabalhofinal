@@ -20,7 +20,9 @@
     Sistema de cadastro;
     Recuperação de senha;
     Visualização de fichas;
+    Edição de fichas;
     Cadastro de execução de exercícios;
+    Edição de execução de exercícios;
     Dashboards personalizados;
     Visualização de vídeos.
 <!-- Apresentar restrições de funcionalidades e de escopo. -->
@@ -30,17 +32,21 @@
   
 <!-- Construir alguns protótipos para a aplicação, disponibilizá-los no Github e descrever o que foi considerado. //-->
 ### 4. Protótipo
+ 
 
-  Protótipos para das páginas elaborados:
-    Login;
-    Signup (Cadastro de usuários);
-    Dashboards (Index);
-    Página de novo treino;
-    Listagem dos treinos (lista);
-    Lista dos excercícios de cada treino;
-    Vídeos exemplo dos excercícios (cadastro);
-    Upload de novos vídeos (atualizar).
-  Todos podem ser encontrado em TP/templates.
+1. Login; - *login/login.html*
+1. Signup - *login/signup.html*
+1. Recovery - *login/recovery.html*
+1. Dashboards - *dashboards/grafico.html*
+1. Página de novo treino - *treino/novoTreino.html*
+1. Listagem dos treinos - *treino/lista.html*
+1. Edição dos treinos - *treino/atualizarTreino.html.html*
+1. Lista dos excercícios de cada treino - *treino/listarTreino.html*
+1. Edição de excercícios - *treino/atualizarAtividadesTreino.html*
+1. Vídeos exemplo dos excercícios - *videos/videos.html*
+1. Upload de novos vídeos - *videos/upload.html*
+
+Todos podem ser encontrado em TP/templates.
 
     
 
