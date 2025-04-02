@@ -14,18 +14,22 @@
 
 <!-- Descrever e limitar o escopo da aplicação. -->
 ### 2. Funcionalidades implementadas
-  Este projeto terá as seguintes funcionalidades:
   - **Sistema de login, cadastro e recuperação de senha**:  Permite a criação de usuários, recuperação de senha, login/log off da aplicação;
   - **Visualização e edição de fichas, cadastro e edição de execução de exercícios**: Se trata da funcionalidade CORE do sistema, permite a adição de dias onde treinos foram executados, e adição de exercicíos, assim como a edição e exclusão de qualquer um desses registros;
-  - **Dashboards personalizados**: Permite a visualização de dashboards de frequência e progressão de carga com base nos registros do usuário;
   - **Visualização, adição e exclusão de vídeos**: Permite a visualização de vídeos informativos sobre a maneira correta de se executar o exercicío.
 <!-- Apresentar restrições de funcionalidades e de escopo. -->
 ### 3. Funcionalidades previstas e não implementadas
 
   Fichas de treinamento fixas, eram uma ideia de implementação prevista porém optei por um sistema mais flexível. Acredito que permitir o usuário realizar o preenchimento de forma customizada seja mais interessante, devido a grande variação de exercicíos que podem ser realizados.
   
-<!-- Construir alguns protótipos para a aplicação, disponibilizá-los no Github e descrever o que foi considerado. //-->
-### 4. Protótipo
+### 4. Outras funcionalidades implementadas
+  - **Dashboards personalizados**: Permite a visualização de dashboards de frequência e progressão de carga com base nos registros do usuário;
+
+### 5. Principais desafios e dificuldades
+
+Minha área principal de atuação não são aplicações web, somado a utilização de um framework que nunca havia utilizado gera certa dificuldade no processo de desenvolvimento. Porém como já possuia conhecimento previo de como a estrutura deveria funcionar, portanto "sabia onde procurar" fazendo com que as dificuldades fossem superadas. 
+
+### 6. Páginas
 1. Login - *login/login.html*
 1. Signup - *login/signup.html*
 1. Recovery - *login/recovery.html*
@@ -40,10 +44,11 @@
 
 Todos podem ser encontrado em TP/templates.
 
-### 5. Instruções para instalação e execução
-1. Instale Python;
-1. Na sua IDE de preferência abra o projeto;
-1. Instale o pip com o seguinte comando: py get-pip.py;
+### 7. Instruções para instalação e execução
+1. Instale [Python](https://www.python.org/downloads/) ;
+1. Realize o download do código do projeto; 
+1. Na sua IDE de preferência abra o projeto (Utilizei [Pycharm](https://www.jetbrains.com/pycharm/));
+1. Instale o pip para ser seu gerenciador de pacotes do python, utilize o seguinte comando: py -m pip install --upgrade pip;
 1. Com o pip instalado, use os comandos:
     1. pip install Flask;
     1. pip install Flask-SQLAlchemy;
@@ -51,8 +56,6 @@ Todos podem ser encontrado em TP/templates.
     1. pip install flask_login;
 1. Execute o app.py;
 1. Pronto, já é possível acessar o software;
-
-
 <!-- Descrever o que deve ser feito para instalar (ou baixar) a aplicação, o que precisa ser configurando (parâmetros, banco de dados e afins) e como executá-la. -->    
 
  
