@@ -105,9 +105,6 @@ def excluirAtvTreino(id):
 
     return redirect(url_for("listarTreino", id=idRef))
 
-
-
-
 @app.route("/excluirTreino/<int:id>")
 @login_required
 def excluirTreino(id):
