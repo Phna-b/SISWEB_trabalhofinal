@@ -34,7 +34,7 @@
 ### 4. Protótipo
  
 
-1. Login; - *login/login.html*
+1. Login - *login/login.html*
 1. Signup - *login/signup.html*
 1. Recovery - *login/recovery.html*
 1. Dashboards - *dashboards/grafico.html*
